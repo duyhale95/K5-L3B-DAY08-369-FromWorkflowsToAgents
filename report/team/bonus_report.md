@@ -1,52 +1,36 @@
 # Bonus report: B7
 
-- **Topic + nguồn (tên, năm, slide):** B7 — Kiểm toán grader. Nguồn: *Rethinking Evaluation of MAS Efficiency* (EMNLP 2026, slide 44 và 59).
-- **CLAIM của nguồn (1 câu):** Nếu thước đo sai thì mọi so sánh shape đều sai theo, kể cả khi shape đúng; trial chết vì hạ tầng (timeout, crash) bị tính là quyết định sai, hoặc chi phí bị đếm hai lần, đều làm lệch kết luận mà không test nào kêu.
-- **BOUNDARY (model / dataset / setup):** Không gọi model thật. Đầu vào là ba danh sách trial tổng hợp trong `src/grader_audit/fixtures/` (12–16 trial, shape `workflow`, seed 11 và 22) và một cặp claim chỉ khác `delay_days` 2 so với 3 trên policy `POL-2026-11`. Ba ứng viên `grader_a`, `grader_b`, `grader_c` chỉ khác cách xử lý `infra_error` và cộng chi phí; `lab8.metrics.summarize` là mốc tham chiếu. Không sửa file nào trong `src/grader_audit/`.
-- **HYPOTHESIS trên LogiX:** Một grader đúng phải (i) không đổi pass rate khi thêm `infra_error`, (ii) giữ nguyên các tỉ lệ và nhân đôi các tổng khi nhân đôi danh sách, (iii) không đổi metric khi chỉ đảo thứ tự trial, và (iv) giữ quyết định nghiệp vụ đúng khi `delay_days` đổi từ 2 sang 3. Grader vi phạm quan hệ nào sẽ bị quan hệ đó bắt.
-- **Biến cố định / biến thay đổi:** Cố định shape, `claim_id`, `seed`, `passed`, `cost_estimate`, `steps`, `model_calls`, `tool_calls`. Thay đổi lần lượt: `delay_days` 2 → 3; thêm trial `infra_error: true`; nhân đôi danh sách; đảo thứ tự danh sách.
-- **Lệnh tái lặp (copy-paste được):**
+- **Topic và nguồn:** Kiểm toán grader theo [đề Bonus B7](../../docs/bonus_topics.md#b7--kiểm-toán-grader) và [hướng dẫn fixture](../../src/grader_audit/README.md). Tài liệu lab liên hệ chủ đề với *Rethinking Evaluation of MAS Efficiency* (slide 44, 59).
+- **CLAIM:** Cách tính mẫu số và chi phí có thể làm lệch kết luận so sánh agent, kể cả khi kết quả nghiệp vụ của từng lượt giữ nguyên.
+- **BOUNDARY:** Ba bản grader xử lý danh sách trial tổng hợp trên shape `workflow`, seed 11 và 22. Cặp claim đổi số ngày giao trễ được kiểm bằng code tính quote. Phạm vi kết luận là các quan hệ đã thử trên fixture.
+- **HYPOTHESIS:** Grader đúng giữ pass rate khi thêm lượt chưa chấm do lỗi hạ tầng, giữ các tỷ lệ và nhân đôi tổng chi phí khi nhân đôi danh sách, và giữ số liệu khi đảo thứ tự. Quote phải đổi từ 0 sang đúng phí ship tại ngưỡng 3 ngày.
+- **Biến cố định và biến thay đổi:** Giữ nguyên grader, schema và các trường trial gốc trong từng phép thử. Lần lượt đổi số ngày trễ, thêm lượt có `infra_error`, nhân đôi danh sách và đảo thứ tự.
+- **Bằng chứng:** `src/reports/bonus_grader_audit.json` tại commit `5c027d8`. Audit chạy trên fixture tĩnh nên không có run ID. Bộ test B7 đạt 19 test và kiểm kết quả tái tạo khớp JSON đã commit.
 
-  ```bash
-  cd src
-  python -m pytest -q tests/test_bonus_grader_audit.py
-  python -m bonus.grader_audit --out reports/bonus_grader_audit.json
-  ```
+Chạy từ thư mục `src/`.
 
-- **File report + run id:** `report/team/bonus_report.md` và `src/reports/bonus_grader_audit.json`. Không có run id vì đây là audit offline trên fixture tổng hợp; script deterministic, không đọc đồng hồ, random hay mạng, nên chạy lại cho cùng JSON.
+```powershell
+python -m pytest -q tests/test_bonus_grader_audit.py
+python -m bonus.grader_audit --out reports/bonus_grader_audit.json
+```
 
 ## Kết quả
 
-Bảng lấy từ `src/reports/bonus_grader_audit.json` (script sinh, không chép tay). ✓ = giữ đúng quan hệ, ✗ = vi phạm.
+| Grader | Q1 Ngưỡng trễ | Q2 Lỗi hạ tầng | Q3 Nhân đôi | Q4 Đảo thứ tự |
+| --- | --- | --- | --- | --- |
+| `grader_a` | Đạt | Đạt | Lệch | Lệch |
+| `grader_b` | Đạt | Đạt | Đạt | Đạt |
+| `grader_c` | Đạt | Lệch | Đạt | Đạt |
 
-| Ứng viên | Q1 `claim_delay` (2 vs 3 ngày) | Q2 `infra` (thêm 4 trial lỗi hạ tầng) | Q3 `duplicate` (nhân đôi danh sách) | Q4 **mới** `trial_order` (đảo thứ tự) |
-| --- | :---: | :---: | :---: | :---: |
-| `grader_a` | ✓ | ✓ | ✗ | ✗ |
-| `grader_b` | ✓ | ✓ | ✓ | ✓ |
-| `grader_c` | ✓ | ✗ | ✓ | ✓ |
-
-**Q1 — quyết định nghiệp vụ:** cả ba bản cho `quote` 0 VND ở `delay_days = 2` và 35.000 VND ở `delay_days = 3` (đúng `min_delay_days = 3`, chỉ hoàn phí ship); trial list 1 fail + 1 pass cho `pass_rate = 0.5`. Fixture này không đi qua `summarize`, nên nó kiểm luật chứ không phân biệt ba bản.
-
-**Q2 — lỗi hạ tầng:** `grader_a` và `grader_b` đánh dấu trial `infra_error` là chưa chấm: `graded_trials` 12 → 12, `pass_rate` 0,75 → 0,75, `successes` 9 → 9. `grader_c` chấm trial lỗi hạ tầng thành `passed = False`: `graded_trials` 12 → **16**, `pass_rate` 0,75 → **0,5625**, `pass_5` 0,667 → **0,5**, seed 11: 0,833 → **0,625**, seed 22: 0,667 → **0,5**. Tên lỗi hành vi: *đưa trial chết vì hạ tầng vào mẫu số như quyết định sai của shape*.
-
-**Q3 — nhân đôi danh sách:** `grader_b` và `grader_c` giữ `pass_rate`, `pass_5`, `seed_pass_rates`, `seed_variance`, `cost_per_success_vnd` và các giá trị trung bình; `trials`, `graded_trials`, `successes`, `total_simulated_cost_vnd` đều gấp đôi (189,5 → 379,0 VND; cost/success 21,056 VND không đổi). `grader_a` cộng thêm chi phí “lần đầu thấy mỗi claim” vào tổng đã có: tổng 283,5 → **473,0** thay vì **567,0** (thiếu 94,0), cost/success 31,5 → **26,278**. Tên lỗi hành vi: *đếm chi phí mô phỏng hai lần*.
-
-**Q4 — quan hệ mới (đảo thứ tự):** cùng một multiset trial, chỉ đổi thứ tự. `grader_b` và `grader_c` bất biến (189,5 → 189,5). `grader_a` đổi tổng 283,5 → **285,0** và cost/success 31,5 → **31,667**: khoản cộng thêm phụ thuộc trial nào xuất hiện trước trong danh sách. Tên lỗi hành vi: *tổng chi phí phụ thuộc thứ tự trial*.
+- **Q1** đổi 2 thành 3 ngày và quote đi từ 0 đến 35.000 VND ở cả ba bản. Phép này xác minh ngưỡng nghiệp vụ độc lập với phần tổng hợp.
+- **Q2** đưa thêm 4 lượt lỗi hạ tầng. `grader_c` đưa chúng vào mẫu số như lỗi ra quyết định, nâng số lượt được chấm từ 12 lên 16 trong khi số lượt thành công vẫn là 9. Pass rate tụt từ 0,75 xuống 0,5625. Hai bản còn lại giữ 9/12.
+- **Q3** cho thấy `grader_a` cộng lại chi phí theo lượt đầu của mỗi claim. Tổng 283,5 VND thành 473,0 thay vì 567,0 khi nhân đôi. Hai bản còn lại đi từ 189,5 đến 379,0 VND.
+- **Q4** giữ nguyên tập trial và chỉ đảo thứ tự. Tổng của `grader_a` đổi từ 283,5 thành 285,0 VND vì khoản cộng lặp phụ thuộc lượt xuất hiện trước. Biến thể kiểm chứng cố ý cộng chi phí ở vị trí chẵn cũng qua Q1–Q3 nhưng trượt Q4, cho thấy Q4 bắt được lỗi phụ thuộc vị trí.
 
 ## Kết luận
 
-- **`grader_b` là bản đúng duy nhất**: chỉ bản này qua cả ba quan hệ chính thức và quan hệ mới.
-- **`grader_a` sai ở Q3 và Q4**, cùng một nguyên nhân: lấy chi phí theo “first-seen” của từng claim rồi cộng lên tổng đã tính trên mọi trial. Trên Q3 nó làm tổng không gấp đôi; trên Q4 nó làm tổng phụ thuộc thứ tự.
-- **`grader_c` sai ở Q2**: treatment `infra_error` thành fail của shape, làm pass rate và pass^5 tụt giả tạo. Đây là lỗi nguy hiểm nhất cho kết luận kiến trúc vì hạ tầng chết nhiều sẽ “trừ điểm” shape mà không liên quan chất lượng quyết định.
-- **Vì sao Q4 bắt được lỗi mà ba quan hệ cũ bỏ sót:** Q3 chỉ nối thêm một bản sao nên thứ tự không đổi; Q2 chỉ đổi thành phần danh sách; Q1 không đi qua `summarize`. Ta thêm một **mutant có kiểm soát** (xử lý `infra_error` đúng, nhưng cộng chi phí các trial ở vị trí chẵn) — mutant này qua Q1, Q2, Q3 nhưng trượt Q4 (283,5 → 285,0). Vì vậy Q4 là quan hệ duy nhất trong bộ hiện tại bắt được lỗi phụ thuộc vị trí/thứ tự.
-- **Một lỗi của chính thước đo lọt qua mọi quan hệ?** Có, ở `pass_5`: `metrics.summarize` chỉ tính một claim khi số dòng đã chấm đúng bằng `len(seeds)`. Q3 tạo 4 dòng/claim trên 2 seed nên `pass_5` rơi từ 0,667 xuống 0,0 ở **cả ba** ứng viên — không phải lỗi của ứng viên nào mà là giới hạn cấu trúc của thước đo chuẩn. Quan hệ Q3 như văn bản README phát biểu (pass_5 không đổi) là không thỏa được với chính baseline. Muốn audit `pass_5` công bằng phải nhân bản theo seed (giữ 1 dòng/claim/seed) hoặc dedupe theo `(claim_id, seed)` trước khi tính.
-- **Điều kiện làm kết luận đảo:** nếu lỗi hạ tầng thực sự thuộc trách nhiệm shape (shape tự quản timeout/crash) thì cách tính của `grader_c` có thể biện hộ; nếu chi phí được định nghĩa là “một lần mỗi claim” thay vì “mỗi trial” thì phần cộng thêm của `grader_a` không sai. Theo `docs/metrics.md`, cost là tổng cost mô phỏng của **mỗi trial** nên cả hai đều là lỗi.
+`grader_b` là bản duy nhất đạt các điều kiện được kiểm trong cả bốn phép. Q3 báo riêng giới hạn `pass_5` chung của các bản. Khi nhân đôi mỗi cặp claim/seed, số dòng mỗi claim vượt số seed, nên `pass_5` giảm từ 0,667 xuống 0 ở cả ba bản. Kiểm riêng chỉ số này cần dữ liệu duy nhất theo cặp claim/seed, hoặc quy tắc xử lý bản ghi trùng được định nghĩa trước. Cách tính của `grader_c` chỉ có thể phù hợp khi rubric quy lỗi hạ tầng đó cho chính shape.
 
 ## Giới hạn
 
-- Fixture tổng hợp 12–16 trial, không phải benchmark 14 claim × 5 seed; kết quả này nói về **thước đo**, không nói shape nào tốt hơn.
-- MockLLM không tham gia audit này; mọi khác biệt đến từ code `summarize`, không từ chất lượng sinh câu trả lời.
-- Quan hệ metamorphic là điều kiện **cần**, không **đủ**: một bản sai hằng số ở mọi metric có thể qua vài quan hệ; ta chỉ kết luận được bản nào lệch trên các phép biến đổi đã chọn.
-- Chưa kiểm `secret_leak_count`, `approval_bypass_count` hay hidden grading (ngoài phạm vi B7); các cổng đó do `crash.json` và audit must-pass của Phase 6 phụ trách.
-- `python -m pytest -q tests/test_bonus_grader_audit.py` hiện chạy **19 passed**; JSON bằng chứng được kiểm tra khớp lại với lần audit mới trong `test_committed_evidence_is_reproducible`.
-- **Lưu ý cho Thành viên 5:** `python -m lab8.check_submission` trong skeleton từng dùng regex `# Bonus report: B[1-6]`, trong khi `docs/bonus_topics.md` có B7. Validator đã được sửa thành `B[1-7]` trong lượt 4 (file này không nằm trong danh sách file thước đo bị cấm), nên tiêu đề đúng `# Bonus report: B7` giờ được chấp nhận.
+Audit đo logic tính điểm trên fixture nhỏ. MockLLM thuộc benchmark chính và không tham gia audit này. Latency của benchmark chính là `unavailable`. Quan hệ metamorphic kiểm tra các tính chất đã chọn. Một lỗi làm sai đồng đều trên mọi đầu vào vẫn có thể qua các quan hệ đó.

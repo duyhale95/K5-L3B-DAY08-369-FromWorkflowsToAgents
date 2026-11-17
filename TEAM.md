@@ -5,7 +5,7 @@
 - Tên nhóm: 369
 - Lớp: L3B *(lưu ý mẫu repo nộp quy ước `K5-L3A-DAY08-TenNhom-FromWorkflowsToAgents`; repo hiện tại: `K5-L3B-Day8-369-FromWorkflows-to-Agents`)*
 - Repo nhóm: `K5-L3B-Day8-369-FromWorkflows-to-Agents` (xem [SUBMISSION.md](SUBMISSION.md))
-- URL repo, nhánh nộp, commit chốt: `https://github.com/duyhale95/K5-L3B-Day8-369-From-Workflows-to-Agents` · nhánh `main` · commit chốt: *(Người 5 điền sau khi chạy benchmark & report cuối)*
+- URL repo, nhánh nộp, commit chốt: `https://github.com/duyhale95/K5-L3B-Day8-369-From-Workflows-to-Agents` · nhánh nộp `main` sau khi duyệt PR · commit chốt code và số liệu `5c027d8` trên `nguyenthienbao`
 
 ## Thành viên
 
@@ -15,7 +15,7 @@
 |   2 | Nguyễn Lê Trọng Mạnh | 2A202603857 | | Tiberu2611 | Triển khai Shape B (`single` ReAct agent) & unit test |
 |   3 | Nguyễn Hoàng Gia An | 2A202603799 | 26ai.annhg@vinuni.edu.vn | AnK17-UIT | Triển khai Shape C (`orchestrator` + sanitized `handoff.v1`) & unit test |
 |   4 | Hoàng Đức An | 2A202603800 | anduchoang2701@gmail.com | katogithub2701 | Kiểm toán Must-Pass (CP4), `crash.json` 20/20 & Bonus B7 (`grader_audit`) |
-|   5 | *(Thành viên 5 — điền khi nhận lượt)* | *(MSSV)* | | *(GitHub)* | Benchmark 4 shape (CP5), Research Card ablation, ADR, Group Report & `check_submission` |
+|   5 | Nguyễn Thiên Bảo | 2A202603861 | 26ai.baont5@vinuni.edu.vn | Limdim1604 | Benchmark CP5, ablation R2, ADR, báo cáo nhóm và kiểm tra bài nộp |
 
 ## Kế hoạch chia việc tuần tự (5 thành viên — Spec Kit)
 
@@ -27,7 +27,7 @@ Chi tiết checklist từng bước và file sở hữu nằm tại [`specs/001-
 | 2 | **Nguyễn Lê Trọng Mạnh (`2A202603857`)** | Phase 4 · `[US2]` | Pull `main`, code `src/lab8/shapes/single.py` (`run_react` max 8 bước, chỉ read tool, không tin prose hơn DB, truyền full quote + `crash_at`), báo cáo cá nhân | `src/tests/test_single_shape.py`, `pytest -q` xanh, `single` 62/62 student pass | **Đã xong** (chờ push `main`) |
 | 3 | **Nguyễn Hoàng Gia An (`2A202603799`)** | Phase 5 · `[US3]` | Pull `main`, code `src/lab8/shapes/orchestrator.py` (`make_handoff`, `run_readonly_investigators`, trace handoff đã sanitize, truyền full quote + `crash_at`), báo cáo cá nhân | `src/tests/test_orchestrator_shape.py`, `pytest -q` xanh, toàn ma trận student 248/248 pass | **Chờ nhóm trưởng duyệt PR** |
 | 4 | **Hoàng Đức An (`2A202603800`)** | Phase 6 · `[US4]` | Pull `main`, audit 3 điều kiện must-pass trên cả 3 shape, tạo `src/reports/crash.json` (`20/20`), làm code/test **Bonus B7** (`grader_audit`), nháp số liệu `report/team/bonus_report.md`, báo cáo cá nhân | `src/tests/test_must_pass_audit.py`, `src/tests/test_bonus_grader_audit.py`, `crash.json` 20/20 | **Đã xong** |
-| 5 | **Thành viên 5** | Phase 7 · `[US5]` | Pull `main`, chạy `benchmark.json` (4 shape × 14 claim × 5 seed), tự kiểm `student_drop/` (nếu có), hoàn thiện `decision_adr.md`, `research_card.md`, `group_report.md`, `bonus_report.md`, chốt commit hash & `check_submission` `0 FAIL`, báo cáo cá nhân | `src/tests/test_benchmark_invariants.py`, `src/reports/benchmark.json`, `check_submission` `0 FAIL` | Chờ lượt 5 |
+| 5 | **Nguyễn Thiên Bảo (`2A202603861`)** | Phase 7 · `[US5]` | Chạy benchmark và crash suite, thực hiện ablation R2, chốt ADR, báo cáo nhóm, bonus B7 và báo cáo cá nhân | `src/tests/test_benchmark_invariants.py`, `src/reports/benchmark.json`, `src/reports/research_r2.json`, `check_submission` | Hoàn thành trên `nguyenthienbao`, chờ PR |
 
 ## Bảng đóng góp
 
@@ -39,6 +39,7 @@ Chi tiết checklist từng bước và file sở hữu nằm tại [`specs/001-
 | Nguyễn Lê Trọng Mạnh (2A202603857) | Shape B (`single` ReAct agent) | `47e48cf` | `src/tests/test_single_shape.py` (34 test unit/contract/crash); `tests/test_public_matrix.py` (`single` 62/62) |
 | Nguyễn Hoàng Gia An (2A202603799) | Shape C (`orchestrator` + `handoff.v1`) | `0d6ac71` | `src/tests/test_orchestrator_shape.py` (12 test) |
 | Hoàng Đức An (2A202603800) | Must-Pass Audit (CP4), `crash.json` 20/20 & Bonus B7 (`grader_audit`) | `dd3ae22` | `src/tests/test_must_pass_audit.py` (43 test); `src/tests/test_bonus_grader_audit.py` (19 test) |
+| Nguyễn Thiên Bảo (2A202603861) | Benchmark CP5, ablation R2, ADR và chốt báo cáo | `5c027d8` | `src/tests/test_benchmark_invariants.py` (9 test) |
 
 ## Cá nhân
 
@@ -48,4 +49,4 @@ Mỗi thành viên đồng thời tạo một báo cáo riêng trong `report/tea
 - Người 2: [`report/team/2A202603857_NguyenLeTrongManh.md`](report/team/2A202603857_NguyenLeTrongManh.md)
 - Người 3: [`report/team/2A202603799_NguyenHoangGiaAn.md`](report/team/2A202603799_NguyenHoangGiaAn.md)
 - Người 4: [`report/team/2A202603800_HoangDucAn.md`](report/team/2A202603800_HoangDucAn.md)
-- Người 5: *(thêm link `report/team/<MSSV_5>_<HoTen_5>.md` khi hoàn thành lượt 5)*
+- Người 5: [`report/team/2A202603861_NguyenThienBao.md`](report/team/2A202603861_NguyenThienBao.md)

@@ -129,24 +129,27 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ## Phase 7: User Story 5 — CP5 Benchmark, ADR, Research Card, Reports & Submission Gate (Priority: P5)
 
-**Owner**: **Người 5** *(pull `main` sau Người 4, điền Họ tên / MSSV / GitHub vào `TEAM.md`)*  
+**Owner**: **Người 5 — Nguyễn Thiên Bảo** (`2A202603861`, `Limdim1604`). Lấy `main` tại `23f7734` và thực hiện Phase 7 trên `nguyenthienbao`.
+
 **Goal**: Chạy benchmark chính thức 4 shape × 14 claim × 5 seed, tự kiểm `student_drop/` (nếu có), hoàn thiện toàn bộ báo cáo nhóm (`decision_adr.md`, `research_card.md`, `group_report.md`, `bonus_report.md`), bổ sung test invariant benchmark, và đưa `python -m lab8.check_submission` về `0 FAIL`.  
 **Independent Test**: `python -m lab8.check_submission` ra `0 FAIL`, `python -m pytest -q` và `python -m pytest -q -m student -o addopts=` xanh, commit hash trong `decision_adr.md` khớp `git log`.
 
 ### Benchmark & Regression Tests for User Story 5
 
-- [ ] T029 [P] [US5] Add regression/invariant test verifying benchmark metric formulas (`pass_rate`, `pass_5`, `seed_variance`, `cost_per_success_vnd`) and clean trace behavior across shapes in `src/tests/test_benchmark_invariants.py`
-- [ ] T030 [US5] Run official crash & benchmark commands from `src/`: `python -m lab8.crash_test --count 20 --out reports/crash.json` and `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json` (DO NOT hand-edit JSON files)
-- [ ] T031 [US5] If `src/student_drop/` is provided by instructor at CP5, run `python -m lab8.benchmark --shapes workflow,single,orchestrator --cases student_drop/hidden_claims.jsonl --world student_drop/hidden_world_state.json --out reports/hidden_selfcheck.json` (do NOT commit `student_drop/` or `hidden_grade.json`)
+- [X] T029 [P] [US5] Verify the public trial grid, benchmark metric formulas, trace artifacts, and the R2 ablation in `src/tests/test_benchmark_invariants.py`.
+- [X] T030 [US5] Generate reports with `python -m lab8.crash_test --count 20 --out reports/crash.json` and `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json`. Crash safety is 20/20, and the benchmark covers 280 trials.
+- [ ] T031 [US5] Optional hidden self-check. `src/student_drop/` was unavailable during Phase 7 verification. If provided, run `python -m lab8.benchmark --shapes workflow,single,orchestrator --cases student_drop/hidden_claims.jsonl --world student_drop/hidden_world_state.json --out reports/hidden_selfcheck.json`.
 
 ### Reports & Final Submission Gate for User Story 5
 
-- [ ] T032 [US5] Run chosen Research Card ablation (R1–R4) strictly using `lab8.benchmark` / `--extra-shape` if needed and fill `report/team/research_card.md` (keep first two columns and all required `CÂU`, `SOURCE`, `CLAIM`, `BOUNDARY`, `HYPOTHESIS`, `METHOD`, `FAILURE / METRIC` rows non-empty)
-- [ ] T033 [US5] Finalize `report/team/bonus_report.md` using the `# Bonus report: B7` template in `docs/bonus_topics.md` (<= 2 pages, exact reproducible command, numbers from tool output, CLAIM/BOUNDARY/MockLLM limits)
-- [ ] T034 [US5] Write `report/team/group_report.md` (<= 5 pages excluding appendix, numbers strictly from `src/reports/benchmark.json` and `src/reports/crash.json`)
-- [ ] T035 [P] [US5] Fill Member 5 info in `TEAM.md` (`## Thành viên`, `## Bảng đóng góp` with all 5 members verified) and create personal report `report/team/<MSSV_5>_<HoTen_5>.md`
-- [ ] T036 [US5] Commit code/reports, capture `git rev-parse --short HEAD`, fill all machine-read fields (`- Shape chọn:`, `- Commit hash:`, `- Run id dẫn chứng:`, metrics, safety) and narrative in `report/team/decision_adr.md`, and update `Commit chốt` in `TEAM.md` & `group_report.md`
-- [ ] T037 [US5] Mark Phase 7 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit docs update, run `python -m pytest -q`, `python -m pytest -q -m student -o addopts=`, `python -m pytest -q tests/test_bonus_*.py`, and `python -m lab8.check_submission` (`0 FAIL`), then push `main` and notify all 5 members to submit the GitHub repo URL on LMS
+- [X] T032 [US5] Run the R2 ablation using `lab8.benchmark` and `--extra-shape`. Record its method, run IDs and results in `report/team/research_card.md` and `src/reports/research_r2.json`.
+- [X] T033 [US5] Finalize `report/team/bonus_report.md` (`# Bonus report: B7`) with the audit command, fixture results and limitations.
+- [X] T034 [US5] Complete `report/team/group_report.md` using the generated benchmark and crash reports.
+- [X] T035 [P] [US5] Update Member 5 and the five-person contribution table in `TEAM.md`. Add `report/team/2A202603861_NguyenThienBao.md`.
+- [X] T036 [US5] Record evidence commit `5c027d8` in `decision_adr.md`, `TEAM.md`, and `group_report.md`. Fill the ADR's required shape, run ID, metrics and safety fields.
+- [X] T037 [US5] Verify Phase 7 on `nguyenthienbao` and commit the documentation. Host 192 passed, student matrix 248 passed, Bonus B7 19 passed, submission check 0 FAIL.
+
+**Handoff:** Nguyễn Thiên Bảo sẽ mở PR từ `nguyenthienbao` để nhóm trưởng duyệt. Việc merge vào `main` và nhắc thành viên nộp LMS thuộc bước nộp của nhóm sau khi duyệt.
 
 ---
 
