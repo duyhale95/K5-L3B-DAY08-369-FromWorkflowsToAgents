@@ -44,7 +44,13 @@ Required verification checks before pushing to `main`:
   - `python -m lab8.crash_test --count 20 --out reports/crash.json` (`crash_safety 20/20`)
 - **Member 5 (CP5 Benchmark + Reports + Submission Gate)**:
   - `python -m lab8.crash_test --count 20 --out reports/crash.json` (`20/20`)
-  - `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json`
+  - `python -m lab8.benchmark --shapes "workflow,single,orchestrator,swarm" --cases data/public_claims.jsonl --seeds "11,22,33,44,55" --out reports/benchmark.json`
   - Optional if `student_drop/` provided: `python -m lab8.benchmark --shapes workflow,single,orchestrator --cases student_drop/hidden_claims.jsonl --world student_drop/hidden_world_state.json --out reports/hidden_selfcheck.json`
-  - `python -m pytest -q` and `python -m pytest -q -m student -o addopts=` and `python -m pytest -q tests/test_bonus_*.py`
-  - Commit code + reports → run `git rev-parse --short HEAD` → update `report/team/decision_adr.md` & `TEAM.md` → commit → run `python -m lab8.check_submission` (`0 FAIL`) → `git push origin main`
+  - `python -m pytest -q`, `python -m pytest -q -m student -o addopts=`, and `python -m pytest -q tests/test_bonus_grader_audit.py`
+  - Commit code and generated evidence, record that commit in `report/team/decision_adr.md` and `TEAM.md`, then commit the written reports. Run `python -m lab8.check_submission` (`0 FAIL`), push `nguyenthienbao`, and open a PR to `main`.
+
+## 3. Team Lead Review and Submission
+
+1. On the PR branch, run the Member 5 checks above. Re-run the commands in [research_card.md](../../report/team/research_card.md) and [bonus_report.md](../../report/team/bonus_report.md) to reproduce both experiments. Use `git diff --exit-code -- reports/benchmark.json reports/crash.json reports/research_r2.json reports/bonus_grader_audit.json` from `src/` to verify the evidence.
+2. Merge the PR with **Create a merge commit** to preserve the evidence and contribution hashes. From the merged branch, confirm `git merge-base --is-ancestor 5c027d8 HEAD` succeeds and run `python -m lab8.check_submission` from `src/`.
+3. Check the repository name and instructor access against [SUBMISSION.md](../../SUBMISSION.md). The documented name is `K5-L3A-DAY08-369-FromWorkflowsToAgents`; follow the coach's instructions if the class uses a different name. Give all five members the final repository URL for their individual LMS submissions.
