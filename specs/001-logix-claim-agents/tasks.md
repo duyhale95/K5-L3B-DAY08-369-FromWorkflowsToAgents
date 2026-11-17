@@ -77,7 +77,7 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 - [X] T013 [US2] Implement bounded ReAct `run_claim` in `src/lab8/shapes/single.py` using `lab8.runtime.run_react`, `get_claim_view`, `lookup_order`, `lookup_policy`, `lookup_refund_history`, `compute_compensation`, `MockLLM` accounting, and host `durability.issue_refund`
 - [X] T014 [US2] Verify host gate (`python -m pytest -q`), `workflow` + `single` student matrix (`124 passed`), and `test_single_shape.py` from `src/`
 - [X] T015 [P] [US2] Fill Member 2 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_2>_<HoTen_2>.md`
-- [ ] T016 [US2] Mark Phase 4 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit all changes cleanly, and push to `main`
+- [X] T016 [US2] Mark Phase 4 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit all changes cleanly, and push to `main`
 
 **Handoff Gate 2 → 3**: `main` có `workflow` + `single` đều đạt 62/62 student tests (124/124); host gate xanh.
 
