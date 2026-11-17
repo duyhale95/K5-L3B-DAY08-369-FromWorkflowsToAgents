@@ -152,7 +152,7 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 **Handoff & Final Checklist (Lead `duyhale95`):**
 
 - [X] Pull `main` (`aa24aca`), kiểm tra toàn bộ commit/PR (#1, #3, #4, #5, #6 + push trực tiếp của Hoàng Đức An), tái lập byte-for-byte 4 file JSON (`crash.json`, `benchmark.json`, `research_r2.json`, `bonus_grader_audit.json`), kiểm tra 192 host tests + 248 student tests + 19 bonus tests + `check_submission` (`0 FAIL`).
-- [ ] Xác nhận quy ước tên repo (`K5-L3B-Day8-369-From-Workflows-to-Agents` vs `K5-L3A-DAY08-369-FromWorkflowsToAgents` theo coach) và quyết định giữ hay revert `src/lab8/check_submission.py` (xem cảnh báo tampered của grader ẩn).
+- [X] Xác nhận đúng tên repo nhóm (`K5-L3B-Day8-369-From-Workflows-to-Agents`), bổ sung email Thành viên 2 (`26ai.manhnlt@vinuni.edu.vn`), và giải thích rõ trường hợp `src/lab8/check_submission.py` (`B[1-6]` → `B[1-7]`) tại mục 5 của `report/team/group_report.md`.
 - [ ] Cả 5 thành viên tự nộp cùng link repo nhóm trên LMS bằng tài khoản cá nhân trước deadline.
 
 ---

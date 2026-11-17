@@ -39,7 +39,9 @@ Nhóm chọn `workflow` vì đạt độ đúng cao nhất cùng chi phí thấp
 
 ## 5. Khó khăn và cách xử lý
 
-Ca T02 cho thấy approval hợp lệ vẫn có thể đi kèm một quote sai nghiệp vụ. Nhóm chạy lại trên cùng claim và seed, vô hiệu hóa riêng đầu vào số ngày đọc từ ticket rồi đối chiếu hai lượt trong JSON. Test invariant kiểm tra cả ma trận claim/seed, công thức metric và trace, kể cả trace của lượt swarm sai đã biết.
+- **Quote sai nghiệp vụ từ ticket nhưng vẫn đi kèm approval hợp lệ (T02):** Ca T02 cho thấy approval hợp lệ vẫn có thể đi kèm một quote sai nghiệp vụ nếu lấy số ngày từ ticket. Nhóm chạy lại trên cùng claim và seed, vô hiệu hóa riêng đầu vào số ngày đọc từ ticket (`swarm_order_only`) rồi đối chiếu hai lượt trong `src/reports/research_r2.json`. Test invariant kiểm tra cả ma trận claim/seed, công thức metric và trace, kể cả trace của lượt swarm sai đã biết.
+- **Regex của `src/lab8/check_submission.py` chưa cập nhật cho Bonus B7:** Khi đề bài bổ sung topic `B7` (`src/grader_audit/`) ở commit `53f6368`, hàm `_check_bonus` trong `src/lab8/check_submission.py` vẫn dùng regex `Bonus report:\s*B[1-6]\b` nên chạy `python -m lab8.check_submission` báo `[FAIL]` dù nhóm dùng đúng tiêu đề `# Bonus report: B7` theo `docs/bonus_topics.md`. Ở commit `23f7734`, nhóm chỉ sửa đúng regex `B[1-6]` → `B[1-7]` tại dòng 243–244 của `src/lab8/check_submission.py` để công cụ kiểm tra local nhận diện hợp lệ B7, và giữ nguyên hoàn toàn các file thước đo và cấu hình được bảo vệ (`metrics.py`, `durability.py`, `policy.py`, `config/*.yaml`, `data/*`, `grader_audit/*`).
+- **Lọc test theo shape và môi trường Windows:** Khi chạy `-k "workflow or single"`, chuỗi `single` khớp luôn tên hàm `test_public_single_run_cases`, nên nhóm kiểm tra từng shape bằng cách chạy đầy đủ `python -m pytest -q -m student -o addopts=` và `test_workflow_shape.py` / `test_single_shape.py` / `test_orchestrator_shape.py`. Ngoài ra, để tránh lỗi `PermissionError` khóa file SQLite trên Windows và sai phiên bản thư viện, mọi lệnh của nhóm đều chạy qua `src/.venv` (Python 3.13) và đóng connection trong `finally: conn.close()`.
 
 ## 6. Tổng hợp đóng góp
 

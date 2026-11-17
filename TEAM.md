@@ -4,7 +4,7 @@
 
 - Tên nhóm: 369
 - Lớp: L3B
-- Repo nhóm hiện tại: `K5-L3B-Day8-369-From-Workflows-to-Agents`. Tên nộp theo mẫu trong [SUBMISSION.md](SUBMISSION.md) là `K5-L3A-DAY08-369-FromWorkflowsToAgents` (xác nhận với coach nếu lớp L3B giữ nguyên tiền tố `K5-L3B-Day8-369-...` hay đổi theo `K5-L3A-DAY08-...`, và đảm bảo repo mở quyền cho giảng viên).
+- Repo nhóm: `K5-L3B-Day8-369-From-Workflows-to-Agents` *(đã xác nhận đúng tên repo nộp của nhóm)*.
 - URL repo, nhánh nộp, commit chốt: `https://github.com/duyhale95/K5-L3B-Day8-369-From-Workflows-to-Agents` · nhánh nộp: `main` · commit chốt code và số liệu: `5c027d8` (đã merge vào `main` qua PR #6 tại `aa24aca`)
 
 ## Thành viên
@@ -12,7 +12,7 @@
 | STT | Họ tên | MSSV | Email | GitHub | Vai trò |
 | --: | ------ | ---- | ----- | ------ | ------- |
 |   1 | Hà Lê Duy | 2A202603851 | 26ai.duyhl2@vinuni.edu.vn | duyhale95 | Trưởng nhóm, chia việc tuần tự (Spec Kit), triển khai Shape A (`workflow`), rà soát & merge PR |
-|   2 | Nguyễn Lê Trọng Mạnh | 2A202603857 | | Tiberu2611 | Triển khai Shape B (`single` ReAct agent) & unit test |
+|   2 | Nguyễn Lê Trọng Mạnh | 2A202603857 | 26ai.manhnlt@vinuni.edu.vn | Tiberu2611 | Triển khai Shape B (`single` ReAct agent) & unit test |
 |   3 | Nguyễn Hoàng Gia An | 2A202603799 | 26ai.annhg@vinuni.edu.vn | AnK17-UIT | Triển khai Shape C (`orchestrator` + sanitized `handoff.v1`) & unit test |
 |   4 | Hoàng Đức An | 2A202603800 | anduchoang2701@gmail.com | katogithub2701 | Kiểm toán Must-Pass (CP4), `crash.json` 20/20 & Bonus B7 (`grader_audit`) |
 |   5 | Nguyễn Thiên Bảo | 2A202603861 | 26ai.baont5@vinuni.edu.vn | Limdim1604 | Benchmark CP5, ablation R2, ADR, báo cáo nhóm và kiểm tra bài nộp |

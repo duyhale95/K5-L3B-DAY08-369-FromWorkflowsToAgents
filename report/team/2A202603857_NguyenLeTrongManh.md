@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Lê Trọng Mạnh
 - MSSV: 2A202603857
-- Email:
+- Email: 26ai.manhnlt@vinuni.edu.vn
 - GitHub: Tiberu2611
 
 ## 2. Phần việc phụ trách
