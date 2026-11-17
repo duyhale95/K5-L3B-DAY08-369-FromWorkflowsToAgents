@@ -1,0 +1,406 @@
+{
+  "claim": "grader_b is the only candidate whose rates and totals survive all three official relations; the new trial-order relation additionally catches a position-dependent accumulator that the official three do not.",
+  "correct_graders": [
+    "grader_b"
+  ],
+  "generated_by": "python -m bonus.grader_audit",
+  "graders": {
+    "grader_a": {
+      "failed_relations": [
+        "duplicated_list_keeps_rates_doubles_totals",
+        "trial_order_does_not_move_metrics"
+      ],
+      "grader": "grader_a",
+      "passes_all_relations": false,
+      "relations": {
+        "claim_delay_2_vs_3": {
+          "evidence": {
+            "quote_a_vnd": 0,
+            "quote_b_vnd": 35000,
+            "stats": {
+              "graded_trials": 2,
+              "pass_rate": 0.5,
+              "successes": 1
+            }
+          },
+          "passed": true,
+          "relation": "claim_delay_2_vs_3",
+          "violations": []
+        },
+        "duplicated_list_keeps_rates_doubles_totals": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 31.5,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 283.5,
+              "trials": 12
+            },
+            "b": {
+              "cost_per_success_vnd": 26.27777777777778,
+              "graded_trials": 24,
+              "successes": 18,
+              "total_simulated_cost_vnd": 473.0,
+              "trials": 24
+            },
+            "expected_total_simulated_cost_vnd": 567.0,
+            "pass_5": {
+              "a": 0.6666666666666666,
+              "b": 0.0
+            },
+            "pass_5_inherited_limitation": "metrics.summarize counts pass^5 only when a claim has exactly len(seeds) graded rows; the duplicated list has 4 rows per claim over 2 seeds, so pass_5 becomes 0 for every candidate. All three candidates share this behaviour; it is not evidence for or against one of them."
+          },
+          "passed": false,
+          "relation": "duplicated_list_keeps_rates_doubles_totals",
+          "violations": [
+            "rate_changed:cost_per_success_vnd:31.5!=26.27777777777778",
+            "totals_not_doubled:total_simulated_cost_vnd:473.0!=2*283.5=567.0"
+          ]
+        },
+        "infra_errors_do_not_move_pass_rate": {
+          "evidence": {
+            "a": {
+              "graded_trials": 12,
+              "pass_5": 0.6666666666666666,
+              "pass_rate": 0.75,
+              "successes": 9,
+              "trials": 12
+            },
+            "b": {
+              "graded_trials": 12,
+              "pass_5": 0.6666666666666666,
+              "pass_rate": 0.75,
+              "successes": 9,
+              "trials": 16
+            },
+            "infra_trials_added": 4
+          },
+          "passed": true,
+          "relation": "infra_errors_do_not_move_pass_rate",
+          "violations": []
+        },
+        "trial_order_does_not_move_metrics": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 31.5,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 283.5,
+              "trials": 12
+            },
+            "note": "same multiset of trials, only the order differs",
+            "reversed": {
+              "cost_per_success_vnd": 31.666666666666668,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 285.0,
+              "trials": 12
+            }
+          },
+          "passed": false,
+          "relation": "trial_order_does_not_move_metrics",
+          "violations": [
+            "metric_changed:total_simulated_cost_vnd:283.5!=285.0",
+            "metric_changed:cost_per_success_vnd:31.5!=31.666666666666668"
+          ]
+        }
+      }
+    },
+    "grader_b": {
+      "failed_relations": [],
+      "grader": "grader_b",
+      "passes_all_relations": true,
+      "relations": {
+        "claim_delay_2_vs_3": {
+          "evidence": {
+            "quote_a_vnd": 0,
+            "quote_b_vnd": 35000,
+            "stats": {
+              "graded_trials": 2,
+              "pass_rate": 0.5,
+              "successes": 1
+            }
+          },
+          "passed": true,
+          "relation": "claim_delay_2_vs_3",
+          "violations": []
+        },
+        "duplicated_list_keeps_rates_doubles_totals": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            },
+            "b": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 24,
+              "successes": 18,
+              "total_simulated_cost_vnd": 379.0,
+              "trials": 24
+            },
+            "expected_total_simulated_cost_vnd": 379.0,
+            "pass_5": {
+              "a": 0.6666666666666666,
+              "b": 0.0
+            },
+            "pass_5_inherited_limitation": "metrics.summarize counts pass^5 only when a claim has exactly len(seeds) graded rows; the duplicated list has 4 rows per claim over 2 seeds, so pass_5 becomes 0 for every candidate. All three candidates share this behaviour; it is not evidence for or against one of them."
+          },
+          "passed": true,
+          "relation": "duplicated_list_keeps_rates_doubles_totals",
+          "violations": []
+        },
+        "infra_errors_do_not_move_pass_rate": {
+          "evidence": {
+            "a": {
+              "graded_trials": 12,
+              "pass_5": 0.6666666666666666,
+              "pass_rate": 0.75,
+              "successes": 9,
+              "trials": 12
+            },
+            "b": {
+              "graded_trials": 12,
+              "pass_5": 0.6666666666666666,
+              "pass_rate": 0.75,
+              "successes": 9,
+              "trials": 16
+            },
+            "infra_trials_added": 4
+          },
+          "passed": true,
+          "relation": "infra_errors_do_not_move_pass_rate",
+          "violations": []
+        },
+        "trial_order_does_not_move_metrics": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            },
+            "note": "same multiset of trials, only the order differs",
+            "reversed": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            }
+          },
+          "passed": true,
+          "relation": "trial_order_does_not_move_metrics",
+          "violations": []
+        }
+      }
+    },
+    "grader_c": {
+      "failed_relations": [
+        "infra_errors_do_not_move_pass_rate"
+      ],
+      "grader": "grader_c",
+      "passes_all_relations": false,
+      "relations": {
+        "claim_delay_2_vs_3": {
+          "evidence": {
+            "quote_a_vnd": 0,
+            "quote_b_vnd": 35000,
+            "stats": {
+              "graded_trials": 2,
+              "pass_rate": 0.5,
+              "successes": 1
+            }
+          },
+          "passed": true,
+          "relation": "claim_delay_2_vs_3",
+          "violations": []
+        },
+        "duplicated_list_keeps_rates_doubles_totals": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            },
+            "b": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 24,
+              "successes": 18,
+              "total_simulated_cost_vnd": 379.0,
+              "trials": 24
+            },
+            "expected_total_simulated_cost_vnd": 379.0,
+            "pass_5": {
+              "a": 0.6666666666666666,
+              "b": 0.0
+            },
+            "pass_5_inherited_limitation": "metrics.summarize counts pass^5 only when a claim has exactly len(seeds) graded rows; the duplicated list has 4 rows per claim over 2 seeds, so pass_5 becomes 0 for every candidate. All three candidates share this behaviour; it is not evidence for or against one of them."
+          },
+          "passed": true,
+          "relation": "duplicated_list_keeps_rates_doubles_totals",
+          "violations": []
+        },
+        "infra_errors_do_not_move_pass_rate": {
+          "evidence": {
+            "a": {
+              "graded_trials": 12,
+              "pass_5": 0.6666666666666666,
+              "pass_rate": 0.75,
+              "successes": 9,
+              "trials": 12
+            },
+            "b": {
+              "graded_trials": 16,
+              "pass_5": 0.5,
+              "pass_rate": 0.5625,
+              "successes": 9,
+              "trials": 16
+            },
+            "infra_trials_added": 4
+          },
+          "passed": false,
+          "relation": "infra_errors_do_not_move_pass_rate",
+          "violations": [
+            "graded_trials:12!=16 (infra trials graded as shape decisions)",
+            "rate_changed:pass_rate:0.75!=0.5625",
+            "rate_changed:pass_5:0.6666666666666666!=0.5",
+            "rate_changed:seed_variance:0.006944444444444451!=0.00390625",
+            "rate_changed:seed_pass_rates[11]:0.8333333333333334!=0.625",
+            "rate_changed:seed_pass_rates[22]:0.6666666666666666!=0.5"
+          ]
+        },
+        "trial_order_does_not_move_metrics": {
+          "evidence": {
+            "a": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            },
+            "note": "same multiset of trials, only the order differs",
+            "reversed": {
+              "cost_per_success_vnd": 21.055555555555557,
+              "graded_trials": 12,
+              "successes": 9,
+              "total_simulated_cost_vnd": 189.5,
+              "trials": 12
+            }
+          },
+          "passed": true,
+          "relation": "trial_order_does_not_move_metrics",
+          "violations": []
+        }
+      }
+    }
+  },
+  "mutant_control": {
+    "failed_relations": [
+      "trial_order_does_not_move_metrics"
+    ],
+    "grader": "order_sensitive_mutant",
+    "passes_all_relations": false,
+    "relations": {
+      "claim_delay_2_vs_3": {
+        "evidence": {
+          "quote_a_vnd": 0,
+          "quote_b_vnd": 35000,
+          "stats": {
+            "graded_trials": 2,
+            "pass_rate": 0.5,
+            "successes": 1
+          }
+        },
+        "passed": true,
+        "relation": "claim_delay_2_vs_3",
+        "violations": []
+      },
+      "duplicated_list_keeps_rates_doubles_totals": {
+        "evidence": {
+          "a": {
+            "cost_per_success_vnd": 31.5,
+            "graded_trials": 12,
+            "successes": 9,
+            "total_simulated_cost_vnd": 283.5,
+            "trials": 12
+          },
+          "b": {
+            "cost_per_success_vnd": 31.5,
+            "graded_trials": 24,
+            "successes": 18,
+            "total_simulated_cost_vnd": 567.0,
+            "trials": 24
+          },
+          "expected_total_simulated_cost_vnd": 567.0,
+          "pass_5": {
+            "a": 0.6666666666666666,
+            "b": 0.0
+          },
+          "pass_5_inherited_limitation": "metrics.summarize counts pass^5 only when a claim has exactly len(seeds) graded rows; the duplicated list has 4 rows per claim over 2 seeds, so pass_5 becomes 0 for every candidate. All three candidates share this behaviour; it is not evidence for or against one of them."
+        },
+        "passed": true,
+        "relation": "duplicated_list_keeps_rates_doubles_totals",
+        "violations": []
+      },
+      "infra_errors_do_not_move_pass_rate": {
+        "evidence": {
+          "a": {
+            "graded_trials": 12,
+            "pass_5": 0.6666666666666666,
+            "pass_rate": 0.75,
+            "successes": 9,
+            "trials": 12
+          },
+          "b": {
+            "graded_trials": 12,
+            "pass_5": 0.6666666666666666,
+            "pass_rate": 0.75,
+            "successes": 9,
+            "trials": 16
+          },
+          "infra_trials_added": 4
+        },
+        "passed": true,
+        "relation": "infra_errors_do_not_move_pass_rate",
+        "violations": []
+      },
+      "trial_order_does_not_move_metrics": {
+        "evidence": {
+          "a": {
+            "cost_per_success_vnd": 31.5,
+            "graded_trials": 12,
+            "successes": 9,
+            "total_simulated_cost_vnd": 283.5,
+            "trials": 12
+          },
+          "note": "same multiset of trials, only the order differs",
+          "reversed": {
+            "cost_per_success_vnd": 31.666666666666668,
+            "graded_trials": 12,
+            "successes": 9,
+            "total_simulated_cost_vnd": 285.0,
+            "trials": 12
+          }
+        },
+        "passed": false,
+        "relation": "trial_order_does_not_move_metrics",
+        "violations": [
+          "metric_changed:total_simulated_cost_vnd:283.5!=285.0",
+          "metric_changed:cost_per_success_vnd:31.5!=31.666666666666668"
+        ]
+      }
+    }
+  },
+  "relations": [
+    "claim_delay_2_vs_3",
+    "infra_errors_do_not_move_pass_rate",
+    "duplicated_list_keeps_rates_doubles_totals",
+    "trial_order_does_not_move_metrics"
+  ]
+}
