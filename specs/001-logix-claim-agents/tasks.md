@@ -91,14 +91,14 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ### Tests for User Story 3
 
-- [ ] T017 [P] [US3] Write unit tests for Shape C verifying `handoff.v1` allowlist isolation (dropping `parent_secret`, `raw_headers`, phone, address, internal_note, item_name), read-only investigator enforcement, trace cleanliness on early returns/crashes, and T13/T14 full-quote handoff in `src/tests/test_orchestrator_shape.py`
+- [X] T017 [P] [US3] Write unit tests for Shape C verifying `handoff.v1` allowlist isolation (dropping `parent_secret`, `raw_headers`, phone, address, internal_note, item_name), read-only investigator enforcement, trace cleanliness on early returns/crashes, and T13/T14 full-quote handoff in `src/tests/test_orchestrator_shape.py`
 
 ### Implementation & Handoff for User Story 3
 
-- [ ] T018 [US3] Implement orchestrator + read-only investigator `run_claim` in `src/lab8/shapes/orchestrator.py` using `make_handoff`, `run_readonly_investigators`, `safe_dump`, `compute_compensation`, `durability.issue_refund` with `crash_at`, and `finish()`
-- [ ] T019 [US3] Verify host gate (`python -m pytest -q`), full student matrix (`python -m pytest -q -m student -o addopts=` = `248 passed`), and `test_orchestrator_shape.py` from `src/`
-- [ ] T020 [P] [US3] Fill Member 3 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_3>_<HoTen_3>.md`
-- [ ] T021 [US3] Mark Phase 5 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit all changes cleanly, and push to `main`
+- [X] T018 [US3] Implement orchestrator + read-only investigator `run_claim` in `src/lab8/shapes/orchestrator.py` using `make_handoff`, `run_readonly_investigators`, `safe_dump`, `compute_compensation`, `durability.issue_refund` with `crash_at`, and `finish()`
+- [X] T019 [US3] Verify host gate (`python -m pytest -q`), full student matrix (`python -m pytest -q -m student -o addopts=` = `248 passed`), and `test_orchestrator_shape.py` from `src/`
+- [X] T020 [P] [US3] Fill Member 3 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_3>_<HoTen_3>.md`
+- [X] T021 [US3] Mark Phase 5 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit and push `fix/an-nguyen-work-orchestrator`, and open a PR to `main` for the team lead to review
 
 **Handoff Gate 3 → 4**: Cả 3 shape học viên (`workflow`, `single`, `orchestrator`) đều xanh 62/62 trên `main`.
 
