@@ -21,9 +21,9 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 **Purpose**: Khởi tạo Spec Kit, kiểm tra môi trường Python `src/.venv`, xác nhận baseline starter và thiết lập danh sách chia việc 5 người tuần tự.
 
-- [ ] T001 Initialize GitHub Spec Kit (`specify init --here --integration agy --script ps`) creating `.specify/` and `.agents/skills/` at repository root
-- [ ] T002 Create project governance rules in `.specify/memory/constitution.md` aligned with `RULES.md`, `RUBRIC.md`, `docs/business_rules.md`, and `docs/contracts.md`
-- [ ] T003 Verify starter Python 3.11–3.13 environment in `src/.venv` (`python -m pip install -r requirements.txt`, `python -m lab8.smoke`, `python -m pytest -q`)
+- [X] T001 Initialize GitHub Spec Kit (`specify init --here --integration agy --script ps`) creating `.specify/` and `.agents/skills/` at repository root
+- [X] T002 Create project governance rules in `.specify/memory/constitution.md` aligned with `RULES.md`, `RUBRIC.md`, `docs/business_rules.md`, and `docs/contracts.md`
+- [X] T003 Verify starter Python 3.11–3.13 environment in `src/.venv` (`python -m pip install -r requirements.txt`, `python -m lab8.smoke`, `python -m pytest -q`)
 
 ---
 
@@ -33,9 +33,9 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 **⚠️ CRITICAL**: Không viết code shape trước khi Spec Kit và bảng chia việc trong `TEAM.md` sẵn sàng.
 
-- [ ] T004 Write sequential 5-person feature specification and checklist in `specs/001-logix-claim-agents/spec.md` and `specs/001-logix-claim-agents/checklists/requirements.md`
-- [ ] T005 Write technical plan, research findings, data model, contracts, and quickstart in `specs/001-logix-claim-agents/plan.md`, `specs/001-logix-claim-agents/research.md`, `specs/001-logix-claim-agents/data-model.md`, `specs/001-logix-claim-agents/contracts/shape-and-trace-contract.md`, and `specs/001-logix-claim-agents/quickstart.md`
-- [ ] T006 Populate Team 369 header, sequential 5-member roster slots (Member 1 = Hà Lê Duy, slots 2–5 ready for teammates), and `## Phân công tuần tự` in `TEAM.md`
+- [X] T004 Write sequential 5-person feature specification and checklist in `specs/001-logix-claim-agents/spec.md` and `specs/001-logix-claim-agents/checklists/requirements.md`
+- [X] T005 Write technical plan, research findings, data model, contracts, and quickstart in `specs/001-logix-claim-agents/plan.md`, `specs/001-logix-claim-agents/research.md`, `specs/001-logix-claim-agents/data-model.md`, `specs/001-logix-claim-agents/contracts/shape-and-trace-contract.md`, and `specs/001-logix-claim-agents/quickstart.md`
+- [X] T006 Populate Team 369 header, sequential 5-member roster slots (Member 1 = Hà Lê Duy, slots 2–5 ready for teammates), and `## Phân công tuần tự` in `TEAM.md`
 
 **Checkpoint**: Spec Kit + baseline host gate verified (`54 passed`); ready for Người 1's technical delivery (`[US1]`).
 
@@ -49,14 +49,14 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ### Tests for User Story 1
 
-- [ ] T007 [P] [US1] Write unit & contract tests for Shape A covering edge policies (`SHIP-LATE-OLD`, `SHIP-LATE-FUTURE`), ticket delay override rejection, `needs_info`/`escalated` clean traces, per-order cap T13/T14, and all 3 `crash_at` points in `src/tests/test_workflow_shape.py`
+- [X] T007 [P] [US1] Write unit & contract tests for Shape A covering edge policies (`SHIP-LATE-OLD`, `SHIP-LATE-FUTURE`), ticket delay override rejection, `needs_info`/`escalated` clean traces, per-order cap T13/T14, and all 3 `crash_at` points in `src/tests/test_workflow_shape.py`
 
 ### Implementation & Handoff for User Story 1
 
-- [ ] T008 [US1] Implement deterministic claim pipeline `run_claim` in `src/lab8/shapes/workflow.py` (`connect` in `try/finally`, `get_claim_view`, `needs_info`, `lookup_order`, `escalated`, `compute_compensation`, `MockLLM` `draft` only, `durability.issue_refund` with full quote + `crash_at`, flush trace before `InjectedCrash`, return via `finish()`)
-- [ ] T009 [US1] Verify host gate (`python -m pytest -q`) and Shape A student matrix (`python -m pytest -q -m student -o addopts= -k workflow` = 62 passed) from `src/`
-- [ ] T010 [P] [US1] Create individual report `report/team/2A202603851_HaLeDuy.md` (copying structure from `report/team/MSSV_HoTen.md` without altering template)
-- [ ] T011 [US1] Update Hà Lê Duy's contribution row in `TEAM.md` (`## Bảng đóng góp`), mark Phase 1–3 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit cleanly, and push to `main`
+- [X] T008 [US1] Implement deterministic claim pipeline `run_claim` in `src/lab8/shapes/workflow.py` (`connect` in `try/finally`, `get_claim_view`, `needs_info`, `lookup_order`, `escalated`, `compute_compensation`, `MockLLM` `draft` only, `durability.issue_refund` with full quote + `crash_at`, flush trace before `InjectedCrash`, return via `finish()`)
+- [X] T009 [US1] Verify host gate (`python -m pytest -q`) and Shape A student matrix (`python -m pytest -q -m student -o addopts= -k workflow` = 62 passed) from `src/`
+- [X] T010 [P] [US1] Create individual report `report/team/2A202603851_HaLeDuy.md` (copying structure from `report/team/MSSV_HoTen.md` without altering template)
+- [X] T011 [US1] Update Hà Lê Duy's contribution row in `TEAM.md` (`## Bảng đóng góp`), mark Phase 1–3 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit cleanly, and push to `main`
 
 **Handoff Gate 1 → 2**: `main` có commit code + test của Hà Lê Duy; `python -m pytest -q` xanh và `workflow` đạt 62/62 student tests.
 
