@@ -38,6 +38,6 @@ Codex hỗ trợ viết code, test và báo cáo. Các lệnh ở mục 4 do Cod
 
 ## 6. Tự đánh giá
 
-Ca T14 cho thấy vì sao Shape C cần chuyển nguyên quote cho host. Nếu orchestrator tự trừ khoản đã hoàn, host sẽ trừ tiếp khoản đó khi áp hạn mức theo đơn. Các test crash bổ sung một kiểm tra khác: khi chạy lại claim, hệ thống vẫn chỉ ghi một khoản hoàn và một bản ghi audit cho khoản đó.
+Ca T14 cho thấy vì sao Shape C cần chuyển nguyên quote cho host. Nếu orchestrator tự trừ khoản đã hoàn, host sẽ trừ tiếp khoản đó khi áp hạn mức theo đơn. Các test crash còn xác nhận rằng khi chạy lại claim, hệ thống vẫn chỉ ghi một khoản hoàn và một bản ghi audit cho khoản đó.
 
 Về bảo mật, test đưa chỉ dẫn giả và chuỗi đánh dấu bí mật vào ticket rồi kiểm tra payload bàn giao, kết quả investigator và trace. Kết quả xác minh hiện dựa trên các ca công khai và fixture SQLite của lab.
