@@ -240,8 +240,8 @@ def _check_research_card(rep: Report, card: str) -> None:
 def _check_bonus(rep: Report, bonus: Path) -> None:
     if bonus.exists():
         text = bonus.read_text(encoding="utf-8")
-        if not re.search(r"Bonus report:\s*B[1-6]\b", text):
-            rep.fail(f"{BONUS_FILE}: tiêu đề phải là '# Bonus report: B1' .. 'B6'", "dùng khung trong docs/bonus_topics.md")
+        if not re.search(r"Bonus report:\s*B[1-7]\b", text):
+            rep.fail(f"{BONUS_FILE}: tiêu đề phải là '# Bonus report: B1' .. 'B7'", "dùng khung trong docs/bonus_topics.md")
         else:
             rep.ok(f"{BONUS_FILE}: đã khai topic")
 

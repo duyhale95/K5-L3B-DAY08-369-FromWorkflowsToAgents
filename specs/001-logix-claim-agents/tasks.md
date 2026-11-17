@@ -112,16 +112,16 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ### Tests & Verification for User Story 4
 
-- [ ] T022 [P] [US4] Write cross-shape must-pass audit tests (crash windows `before_effect`/`after_effect_before_checkpoint`/`after_checkpoint`, approval mismatch/revoked/expired, per-order cap T13/T14, and canary/PII leak scan across trace + sibling `<run_id>*` files) for `workflow`, `single`, and `orchestrator` in `src/tests/test_must_pass_audit.py`
-- [ ] T023 [US4] Run official 20-point crash suite `python -m lab8.crash_test --count 20 --out reports/crash.json` from `src/` and confirm `crash_safety == "20/20"`
+- [X] T022 [P] [US4] Write cross-shape must-pass audit tests (crash windows `before_effect`/`after_effect_before_checkpoint`/`after_checkpoint`, approval mismatch/revoked/expired, per-order cap T13/T14, and canary/PII leak scan across trace + sibling `<run_id>*` files) for `workflow`, `single`, and `orchestrator` in `src/tests/test_must_pass_audit.py`
+- [X] T023 [US4] Run official 20-point crash suite `python -m lab8.crash_test --count 20 --out reports/crash.json` from `src/` and confirm `crash_safety == "20/20"`
 
 ### Bonus B7 (Grader Audit) Execution for User Story 4
 
-- [ ] T024 [US4] Inspect `src/grader_audit/README.md`, `grader_a.py`, `grader_b.py`, `grader_c.py`, and `src/grader_audit/fixtures/*.json` (read-only; DO NOT edit any `grader_audit/` files)
-- [ ] T025 [US4] Implement Bonus B7 metamorphic test suite in `src/tests/test_bonus_grader_audit.py` parametrizing `["grader_a", "grader_b", "grader_c"]` over `metamorphic_claim_delay.json`, `metamorphic_infra.json`, `metamorphic_duplicate.json`, PLUS one newly designed metamorphic relation catching a defect missed by the first three relations
-- [ ] T026 [P] [US4] Run `python -m pytest -q tests/test_bonus_grader_audit.py` (optionally generate deterministic JSON evidence `src/reports/bonus_grader_audit.json` via script without hand-editing) and draft technical findings (exact failing fixtures, numeric deltas, behavioral defect names) in `report/team/bonus_report.md`
-- [ ] T027 [P] [US4] Fill Member 4 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_4>_<HoTen_4>.md`
-- [ ] T028 [US4] Verify `python -m pytest -q` and `python -m pytest -q tests/test_bonus_grader_audit.py`, mark Phase 6 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit cleanly, and push to `main`
+- [X] T024 [US4] Inspect `src/grader_audit/README.md`, `grader_a.py`, `grader_b.py`, `grader_c.py`, and `src/grader_audit/fixtures/*.json` (read-only; DO NOT edit any `grader_audit/` files)
+- [X] T025 [US4] Implement Bonus B7 metamorphic test suite in `src/tests/test_bonus_grader_audit.py` parametrizing `["grader_a", "grader_b", "grader_c"]` over `metamorphic_claim_delay.json`, `metamorphic_infra.json`, `metamorphic_duplicate.json`, PLUS one newly designed metamorphic relation catching a defect missed by the first three relations
+- [X] T026 [P] [US4] Run `python -m pytest -q tests/test_bonus_grader_audit.py` (optionally generate deterministic JSON evidence `src/reports/bonus_grader_audit.json` via script without hand-editing) and draft technical findings (exact failing fixtures, numeric deltas, behavioral defect names) in `report/team/bonus_report.md`
+- [X] T027 [P] [US4] Fill Member 4 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_4>_<HoTen_4>.md`
+- [X] T028 [US4] Verify `python -m pytest -q` and `python -m pytest -q tests/test_bonus_grader_audit.py`, mark Phase 6 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit cleanly, and push to `main`
 
 **Handoff Gate 4 → 5**: `src/reports/crash.json` đạt `20/20`, `test_must_pass_audit.py` và `test_bonus_grader_audit.py` chạy xanh ổn định trên `main`.
 

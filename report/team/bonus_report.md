@@ -49,3 +49,4 @@ Bảng lấy từ `src/reports/bonus_grader_audit.json` (script sinh, không ch�
 - Quan hệ metamorphic là điều kiện **cần**, không **đủ**: một bản sai hằng số ở mọi metric có thể qua vài quan hệ; ta chỉ kết luận được bản nào lệch trên các phép biến đổi đã chọn.
 - Chưa kiểm `secret_leak_count`, `approval_bypass_count` hay hidden grading (ngoài phạm vi B7); các cổng đó do `crash.json` và audit must-pass của Phase 6 phụ trách.
 - `python -m pytest -q tests/test_bonus_grader_audit.py` hiện chạy **19 passed**; JSON bằng chứng được kiểm tra khớp lại với lần audit mới trong `test_committed_evidence_is_reproducible`.
+- **Lưu ý cho Thành viên 5:** `python -m lab8.check_submission` trong skeleton từng dùng regex `# Bonus report: B[1-6]`, trong khi `docs/bonus_topics.md` có B7. Validator đã được sửa thành `B[1-7]` trong lượt 4 (file này không nằm trong danh sách file thước đo bị cấm), nên tiêu đề đúng `# Bonus report: B7` giờ được chấp nhận.
