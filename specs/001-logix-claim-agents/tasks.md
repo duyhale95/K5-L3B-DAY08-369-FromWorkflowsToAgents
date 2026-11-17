@@ -64,9 +64,9 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ## Phase 4: User Story 2 — Shape B (`single` ReAct Agent) (Priority: P2)
 
-**Owner**: **Người 2** *(pull `main` sau Người 1, điền Họ tên / MSSV / GitHub vào `TEAM.md`)*  
+**Owner**: **Người 2 — Nguyễn Lê Trọng Mạnh** (`2A202603857`, GitHub: `Tiberu2611`) — *PR #1 đã duyệt & merge vào `main` tại `3406566`*  
 **Goal**: Implement **Shape B (`single.py`)** dùng `lab8.runtime.run_react(..., max_steps=8)` chỉ dùng read tool, không tin prose trong ticket hơn DB, tính quote bằng `compute_compensation`, gọi `durability.issue_refund` với full quote + `crash_at`, ghi Trace Contract v1 sạch secret/PII.  
-**Independent Test**: `python -m pytest -q` xanh 100% và `python -m pytest -q -m student -o addopts= -k "workflow or single"` đạt `124 passed`.
+**Independent Test**: `python -m pytest -q` xanh 100% và `single` đạt `62/62` trong ma trận student (`python -m pytest -q -m student -o addopts=`).
 
 ### Tests for User Story 2
 
@@ -75,17 +75,17 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 ### Implementation & Handoff for User Story 2
 
 - [X] T013 [US2] Implement bounded ReAct `run_claim` in `src/lab8/shapes/single.py` using `lab8.runtime.run_react`, `get_claim_view`, `lookup_order`, `lookup_policy`, `lookup_refund_history`, `compute_compensation`, `MockLLM` accounting, and host `durability.issue_refund`
-- [X] T014 [US2] Verify host gate (`python -m pytest -q`), `workflow` + `single` student matrix (`124 passed`), and `test_single_shape.py` from `src/`
-- [X] T015 [P] [US2] Fill Member 2 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_2>_<HoTen_2>.md`
-- [X] T016 [US2] Confirm the Phase 4 handoff on `main`. PR #1 merged the single agent, tests, and personal report in `3406566`.
+- [X] T014 [US2] Verify host gate (`python -m pytest -q`: 109 passed) and `single` student matrix (62/62) from `src/`
+- [X] T015 [P] [US2] Fill Member 2 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/2A202603857_NguyenLeTrongManh.md`
+- [X] T016 [US2] Confirm the Phase 4 handoff on `main`. PR #1 merged the single agent (`47e48cf`), tests, and personal report (`72f91d9`) in `3406566`.
 
-**Handoff Gate 2 → 3**: `main` có `workflow` + `single` đều đạt 62/62 student tests (124/124); host gate xanh.
+**Handoff Gate 2 → 3**: `main` có `workflow` + `single` đều đạt 62/62 student tests; host gate xanh.
 
 ---
 
 ## Phase 5: User Story 3 — Shape C (`orchestrator` & Sanitized Handoff) (Priority: P3)
 
-**Owner**: **Người 3** *(pull `main` sau Người 2, điền Họ tên / MSSV / GitHub vào `TEAM.md`)*  
+**Owner**: **Người 3 — Nguyễn Hoàng Gia An** (`2A202603799`, GitHub: `AnK17-UIT`) — *PR #3 (`ade768d`), PR #4 & #5 (`0bb0e08`) đã duyệt & merge vào `main`*  
 **Goal**: Implement **Shape C (`orchestrator.py`)** dùng `lab8.handoff.make_handoff` + `lab8.runtime.run_readonly_investigators`, chỉ truyền allowlist facts và read-only tools (có `lookup_refund_history`), không rò rỉ `CANARY_SECRET_*` / `raw_headers` / PII vào worker hay trace, gọi `durability.issue_refund` với full quote + `crash_at`.  
 **Independent Test**: `python -m pytest -q` xanh 100% và toàn bộ ma trận `python -m pytest -q -m student -o addopts=` đạt `248 passed` (`workflow`, `single`, `orchestrator` 186/186 pass; `swarm` 62/62 assertion pass).
 
@@ -96,9 +96,9 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 ### Implementation & Handoff for User Story 3
 
 - [X] T018 [US3] Implement orchestrator + read-only investigator `run_claim` in `src/lab8/shapes/orchestrator.py` using `make_handoff`, `run_readonly_investigators`, `safe_dump`, `compute_compensation`, `durability.issue_refund` with `crash_at`, and `finish()`
-- [X] T019 [US3] Verify host gate (`python -m pytest -q`), full student matrix (`python -m pytest -q -m student -o addopts=` = `248 passed`), and `test_orchestrator_shape.py` from `src/`
-- [X] T020 [P] [US3] Fill Member 3 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_3>_<HoTen_3>.md`
-- [X] T021 [US3] Mark Phase 5 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit and push `fix/an-nguyen-work-orchestrator`, and open a PR to `main` for the team lead to review
+- [X] T019 [US3] Verify host gate (`python -m pytest -q`: 121 passed), full student matrix (`python -m pytest -q -m student -o addopts=` = `248 passed`), and `test_orchestrator_shape.py` (12 passed) from `src/`
+- [X] T020 [P] [US3] Fill Member 3 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/2A202603799_NguyenHoangGiaAn.md`
+- [X] T021 [US3] Mark Phase 5 `[X]` in `specs/001-logix-claim-agents/tasks.md`; PR #3 (`ade768d`: `0d6ac71`, `8038518`) and PR #4/#5 (`0bb0e08`: `45bf255`, `f42562e`) reviewed and merged into `main`
 
 **Handoff Gate 3 → 4**: Cả 3 shape học viên (`workflow`, `single`, `orchestrator`) đều xanh 62/62 trên `main`.
 
@@ -106,7 +106,7 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ## Phase 6: User Story 4 — CP4 Must-Pass Safety Audit, Crash 20/20 & Bonus B7 (Priority: P4)
 
-**Owner**: **Người 4** *(pull `main` sau Người 3, điền Họ tên / MSSV / GitHub vào `TEAM.md`)*  
+**Owner**: **Người 4 — Hoàng Đức An** (`2A202603800`, GitHub: `katogithub2701`) — *Push trực tiếp trên `main`: `dd3ae22`, `23f7734`*  
 **Goal**: Kiểm toán toàn diện 3 điều kiện must-pass trên cả 3 shape (`workflow`, `single`, `orchestrator`), tạo `src/reports/crash.json` (`20/20`), và thực hiện phần kỹ thuật của **Bonus B7 (Kiểm toán grader)** trên `grader_a`, `grader_b`, `grader_c` với 3 fixture có sẵn + 1 quan hệ metamorphic mới.  
 **Independent Test**: `python -m pytest -q`, `python -m pytest -q tests/test_bonus_grader_audit.py`, và `python -m lab8.crash_test --count 20 --out reports/crash.json` (`crash_safety 20/20`) đều xanh.
 
@@ -118,10 +118,10 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 ### Bonus B7 (Grader Audit) Execution for User Story 4
 
 - [X] T024 [US4] Inspect `src/grader_audit/README.md`, `grader_a.py`, `grader_b.py`, `grader_c.py`, and `src/grader_audit/fixtures/*.json` (read-only; DO NOT edit any `grader_audit/` files)
-- [X] T025 [US4] Implement Bonus B7 metamorphic test suite in `src/tests/test_bonus_grader_audit.py` parametrizing `["grader_a", "grader_b", "grader_c"]` over `metamorphic_claim_delay.json`, `metamorphic_infra.json`, `metamorphic_duplicate.json`, PLUS one newly designed metamorphic relation catching a defect missed by the first three relations
-- [X] T026 [P] [US4] Run `python -m pytest -q tests/test_bonus_grader_audit.py` (optionally generate deterministic JSON evidence `src/reports/bonus_grader_audit.json` via script without hand-editing) and draft technical findings (exact failing fixtures, numeric deltas, behavioral defect names) in `report/team/bonus_report.md`
-- [X] T027 [P] [US4] Fill Member 4 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_4>_<HoTen_4>.md`
-- [X] T028 [US4] Verify `python -m pytest -q` and `python -m pytest -q tests/test_bonus_grader_audit.py`, mark Phase 6 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit cleanly, and push to `main`
+- [X] T025 [US4] Implement Bonus B7 metamorphic test suite in `src/tests/test_bonus_grader_audit.py` and `src/bonus/grader_audit.py` parametrizing `["grader_a", "grader_b", "grader_c"]` over `metamorphic_claim_delay.json`, `metamorphic_infra.json`, `metamorphic_duplicate.json`, PLUS `trial_order_does_not_move_metrics`
+- [X] T026 [P] [US4] Run `python -m pytest -q tests/test_bonus_grader_audit.py` (19 passed), generate `src/reports/bonus_grader_audit.json` via `python -m bonus.grader_audit`, and draft technical findings in `report/team/bonus_report.md`
+- [X] T027 [P] [US4] Fill Member 4 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/2A202603800_HoangDucAn.md`
+- [X] T028 [US4] Verify `python -m pytest -q` (183 passed) and `python -m pytest -q tests/test_bonus_grader_audit.py` (19 passed), mark Phase 6 `[X]` in `specs/001-logix-claim-agents/tasks.md`, and push commits `dd3ae22` + `23f7734` to `main` *(note: `23f7734` also updated `check_submission.py` regex `B[1-6]` → `B[1-7]`; see submission audit)*
 
 **Handoff Gate 4 → 5**: `src/reports/crash.json` đạt `20/20`, `test_must_pass_audit.py` và `test_bonus_grader_audit.py` chạy xanh ổn định trên `main`.
 
@@ -129,7 +129,7 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 ## Phase 7: User Story 5 — CP5 Benchmark, ADR, Research Card, Reports & Submission Gate (Priority: P5)
 
-**Owner**: **Người 5 — Nguyễn Thiên Bảo** (`2A202603861`, `Limdim1604`). Lấy `main` tại `23f7734` và thực hiện Phase 7 trên `nguyenthienbao`.
+**Owner**: **Người 5 — Nguyễn Thiên Bảo** (`2A202603861`, `Limdim1604`). Lấy `main` tại `23f7734`, thực hiện Phase 7 trên `nguyenthienbao` (`5c027d8`, `eb5837c`, `a39c589`), và **PR #6 đã duyệt & merge vào `main` tại `aa24aca`**.
 
 **Goal**: Chạy benchmark chính thức 4 shape × 14 claim × 5 seed, tự kiểm `student_drop/` (nếu có), hoàn thiện toàn bộ báo cáo nhóm (`decision_adr.md`, `research_card.md`, `group_report.md`, `bonus_report.md`), bổ sung test invariant benchmark, và đưa `python -m lab8.check_submission` về `0 FAIL`.  
 **Independent Test**: `python -m lab8.check_submission` ra `0 FAIL`, `python -m pytest -q` và `python -m pytest -q -m student -o addopts=` xanh, commit hash trong `decision_adr.md` khớp `git log`.
@@ -138,18 +138,22 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 
 - [X] T029 [P] [US5] Verify the public trial grid, benchmark metric formulas, trace artifacts, and the R2 ablation in `src/tests/test_benchmark_invariants.py`.
 - [X] T030 [US5] Generate reports with `python -m lab8.crash_test --count 20 --out reports/crash.json` and `python -m lab8.benchmark --shapes workflow,single,orchestrator,swarm --cases data/public_claims.jsonl --seeds 11,22,33,44,55 --out reports/benchmark.json`. Crash safety is 20/20, and the benchmark covers 280 trials.
-- [ ] T031 [US5] Optional hidden self-check. `src/student_drop/` was unavailable during Phase 7 verification. If provided, run `python -m lab8.benchmark --shapes workflow,single,orchestrator --cases student_drop/hidden_claims.jsonl --world student_drop/hidden_world_state.json --out reports/hidden_selfcheck.json`.
+- [ ] T031 [US5] Optional hidden self-check. `src/student_drop/` was not distributed in the workspace; skip until/unless `student_drop/` is handed out at CP5.
 
 ### Reports & Final Submission Gate for User Story 5
 
-- [X] T032 [US5] Run the R2 ablation using `lab8.benchmark` and `--extra-shape`. Record its method, run IDs and results in `report/team/research_card.md` and `src/reports/research_r2.json`.
+- [X] T032 [US5] Run the R2 ablation using `lab8.benchmark` and `--extra-shape` (`src/bonus/swarm_order_only.py`). Record its method, run IDs and results in `report/team/research_card.md` and `src/reports/research_r2.json`.
 - [X] T033 [US5] Finalize `report/team/bonus_report.md` (`# Bonus report: B7`) with the audit command, fixture results and limitations.
 - [X] T034 [US5] Complete `report/team/group_report.md` using the generated benchmark and crash reports.
 - [X] T035 [P] [US5] Update Member 5 and the five-person contribution table in `TEAM.md`. Add `report/team/2A202603861_NguyenThienBao.md`.
 - [X] T036 [US5] Record evidence commit `5c027d8` in `decision_adr.md`, `TEAM.md`, and `group_report.md`. Fill the ADR's required shape, run ID, metrics and safety fields.
-- [X] T037 [US5] Verify Phase 7 on `nguyenthienbao` and commit the documentation. Host 192 passed, student matrix 248 passed, Bonus B7 19 passed, submission check 0 FAIL.
+- [X] T037 [US5] Verify Phase 7 on `nguyenthienbao` and merge PR #6 into `main` at `aa24aca`. Host 192 passed, student matrix 248 passed, Bonus B7 19 passed, submission check `0 FAIL`.
 
-**Handoff:** Nguyễn Thiên Bảo sẽ mở PR từ `nguyenthienbao` để nhóm trưởng duyệt. Việc merge vào `main` và nhắc thành viên nộp LMS thuộc bước nộp của nhóm sau khi duyệt.
+**Handoff & Final Checklist (Lead `duyhale95`):**
+
+- [X] Pull `main` (`aa24aca`), kiểm tra toàn bộ commit/PR (#1, #3, #4, #5, #6 + push trực tiếp của Hoàng Đức An), tái lập byte-for-byte 4 file JSON (`crash.json`, `benchmark.json`, `research_r2.json`, `bonus_grader_audit.json`), kiểm tra 192 host tests + 248 student tests + 19 bonus tests + `check_submission` (`0 FAIL`).
+- [ ] Xác nhận quy ước tên repo (`K5-L3B-Day8-369-From-Workflows-to-Agents` vs `K5-L3A-DAY08-369-FromWorkflowsToAgents` theo coach) và quyết định giữ hay revert `src/lab8/check_submission.py` (xem cảnh báo tampered của grader ẩn).
+- [ ] Cả 5 thành viên tự nộp cùng link repo nhóm trên LMS bằng tài khoản cá nhân trước deadline.
 
 ---
 
