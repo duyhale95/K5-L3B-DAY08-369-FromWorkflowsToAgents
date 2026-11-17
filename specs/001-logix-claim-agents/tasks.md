@@ -77,7 +77,7 @@ Mỗi thành viên chỉ bắt đầu lượt mình sau khi người đứng tr�
 - [X] T013 [US2] Implement bounded ReAct `run_claim` in `src/lab8/shapes/single.py` using `lab8.runtime.run_react`, `get_claim_view`, `lookup_order`, `lookup_policy`, `lookup_refund_history`, `compute_compensation`, `MockLLM` accounting, and host `durability.issue_refund`
 - [X] T014 [US2] Verify host gate (`python -m pytest -q`), `workflow` + `single` student matrix (`124 passed`), and `test_single_shape.py` from `src/`
 - [X] T015 [P] [US2] Fill Member 2 info in `TEAM.md` (`## Thành viên` & `## Bảng đóng góp`) and create personal report `report/team/<MSSV_2>_<HoTen_2>.md`
-- [ ] T016 [US2] Mark Phase 4 `[X]` in `specs/001-logix-claim-agents/tasks.md`, commit all changes cleanly, and push to `main`
+- [X] T016 [US2] Confirm the Phase 4 handoff on `main`. PR #1 merged the single agent, tests, and personal report in `3406566`.
 
 **Handoff Gate 2 → 3**: `main` có `workflow` + `single` đều đạt 62/62 student tests (124/124); host gate xanh.
 
@@ -172,7 +172,7 @@ Phase 1 & 2 (Setup + Spec Kit) ──► Phase 3 [US1] Người 1: workflow.py +
                                                                                                        │
                                ┌───────────────────────────────────────────────────────────────────────┘
                                ▼
-                         Phase 7 [US5] Người 5: benchmark.json + ADR + research_card + group_report + check_submission ──► push main
+                         Phase 7 [US5] Người 5: benchmark.json + ADR + research_card + group_report + check_submission ──► PR to main
 ```
 
 ### Critical Rules Across All 5 Turns
